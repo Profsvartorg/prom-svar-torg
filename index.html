@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СварМаш — Сварочное оборудование</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --orange:#E8620A;
+    --orange-dark:#B84D07;
+    --orange-glow:#FF7A1A;
+    --metal-dark:#0E0E0F;
+    --metal-mid:#1A1A1C;
+    --metal-surface:#242426;
+    --metal-light:#2E2E31;
+    --metal-border:#3A3A3E;
+    --steel:#8A8A90;
+    --steel-light:#B0B0B8;
+    --white:#F0EFED;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'Barlow',sans-serif;background:var(--metal-dark);color:var(--white);line-height:1.6;overflow-x:hidden}
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(14,14,15,0.95);border-bottom:1px solid var(--metal-border);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:60px}
+  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;letter-spacing:0.05em;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+  .nav-logo span{color:var(--orange)}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:var(--steel-light);text-decoration:none;font-size:0.875rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+  .nav-links a:hover{color:var(--orange)}
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--metal-dark)}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0E0E0F 0%,#1A1A1C 50%,#0E0E0F 100%)}
+  .hero-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(58,58,62,0.25) 39px,rgba(58,58,62,0.25) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(58,58,62,0.25) 39px,rgba(58,58,62,0.25) 40px)}
+  .hero-glow{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(232,98,10,0.12) 0%,transparent 70%);pointer-events:none}
+  .hero-glow2{position:absolute;bottom:-30%;left:-5%;width:500px;height:500px;background:radial-gradient(circle,rgba(232,98,10,0.06) 0%,transparent 70%);pointer-events:none}
+  .hero-content{position:relative;z-index:2;padding:0 2.5rem;max-width:1200px;margin:0 auto;width:100%}
+  .hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(232,98,10,0.15);border:1px solid rgba(232,98,10,0.3);color:var(--orange-glow);font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:5px 14px;border-radius:2px;margin-bottom:1.5rem}
+  .hero-tag::before{content:'';display:block;width:6px;height:6px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+  h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,8vw,6.5rem);line-height:0.9;letter-spacing:-0.01em;margin-bottom:1.5rem;text-transform:uppercase}
+  h1 .line2{color:var(--orange);display:block}
+  .hero-sub{font-size:1.1rem;color:var(--steel-light);font-weight:300;max-width:480px;margin-bottom:2.5rem;line-height:1.7}
+  .btn-row{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;font-family:'Barlow',sans-serif;font-weight:600;font-size:0.875rem;letter-spacing:0.08em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s}
+  .btn-primary:hover{background:var(--orange-glow);transform:translateY(-1px)}
+  .btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:'Barlow',sans-serif;font-weight:500;font-size:0.875rem;letter-spacing:0.08em;text-transform:uppercase;padding:13px 28px;border-radius:2px;text-decoration:none;border:1px solid var(--metal-border);transition:border-color 0.2s,background 0.2s}
+  .btn-outline:hover{border-color:var(--orange);background:rgba(232,98,10,0.08)}
+  .hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:3rem;border-top:1px solid var(--metal-border)}
+  .stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.5rem;color:var(--orange);line-height:1}
+  .stat-label{font-size:0.8rem;color:var(--steel);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px}
+  /* SECTIONS */
+  section{padding:6rem 2.5rem}
+  .container{max-width:1100px;margin:0 auto}
+  .section-label{font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:0.75rem}
+  .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(1.8rem,4vw,2.8rem);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:2.5rem;line-height:1.1}
+  /* ABOUT */
+  .about-section{background:var(--metal-mid)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+  .about-text p{color:var(--steel-light);font-size:1.05rem;line-height:1.8;margin-bottom:1.2rem;font-weight:300}
+  .about-text p strong{color:var(--white);font-weight:500}
+  .about-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+  .feature-item{display:flex;align-items:flex-start;gap:12px;padding:1rem;background:var(--metal-surface);border:1px solid var(--metal-border);border-radius:2px}
+  .feature-icon{width:32px;height:32px;background:rgba(232,98,10,0.15);border:1px solid rgba(232,98,10,0.25);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .feature-icon svg{width:16px;height:16px;fill:var(--orange)}
+  .feature-text p{font-size:0.85rem;font-weight:500;color:var(--white);margin-bottom:2px}
+  .feature-text span{font-size:0.78rem;color:var(--steel)}
+  .about-visual{background:var(--metal-surface);border:1px solid var(--metal-border);border-radius:2px;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden}
+  .about-visual::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(232,98,10,0.03) 10px,rgba(232,98,10,0.03) 11px)}
+  .spark{width:80px;height:80px;position:relative;z-index:1}
+  .spark-svg{animation:rotate 8s linear infinite}
+  @keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .about-visual-text{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;position:relative;z-index:1}
+  /* PRICE */
+  .price-section{background:var(--metal-dark)}
+  .price-card{background:var(--metal-surface);border:1px solid var(--metal-border);border-radius:2px;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;position:relative;overflow:hidden}
+  .price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--orange-dark),transparent)}
+  .price-card-info h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.8rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem}
+  .price-card-info p{color:var(--steel-light);font-size:0.95rem;font-weight:300;max-width:400px}
+  .price-meta{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap}
+  .price-badge{background:var(--metal-light);border:1px solid var(--metal-border);border-radius:2px;padding:6px 14px;font-size:0.78rem;color:var(--steel-light);letter-spacing:0.06em}
+  .price-badge strong{color:var(--orange);font-weight:600}
+  .price-download{display:flex;flex-direction:column;align-items:center;gap:12px;flex-shrink:0}
+  .btn-download{display:flex;flex-direction:column;align-items:center;gap:8px;background:var(--orange);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:0.1em;text-transform:uppercase;padding:20px 36px;border-radius:2px;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s}
+  .btn-download:hover{background:var(--orange-glow);transform:translateY(-2px)}
+  .btn-download svg{width:28px;height:28px;fill:#fff;margin-bottom:4px}
+  .price-note{font-size:0.75rem;color:var(--steel);text-align:center}
+  /* CONTACTS */
+  .contact-section{background:var(--metal-mid)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+  .contact-items{display:flex;flex-direction:column;gap:1.2rem}
+  .contact-item{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem 1.5rem;background:var(--metal-surface);border:1px solid var(--metal-border);border-radius:2px;transition:border-color 0.2s}
+  .contact-item:hover{border-color:rgba(232,98,10,0.3)}
+  .contact-icon{width:40px;height:40px;background:rgba(232,98,10,0.1);border:1px solid rgba(232,98,10,0.2);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .contact-icon svg{width:18px;height:18px;fill:var(--orange)}
+  .contact-info-label{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--steel);margin-bottom:4px}
+  .contact-info-value{font-size:0.95rem;color:var(--white);font-weight:400}
+  .contact-info-value a{color:var(--white);text-decoration:none;transition:color 0.2s}
+  .contact-info-value a:hover{color:var(--orange)}
+  /* MAP */
+  .map-placeholder{background:var(--metal-surface);border:1px solid var(--metal-border);border-radius:2px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden;cursor:pointer;text-decoration:none}
+  .map-placeholder::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(58,58,62,0.3) 29px,rgba(58,58,62,0.3) 30px),repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(58,58,62,0.3) 29px,rgba(58,58,62,0.3) 30px)}
+  .map-pin{width:40px;height:40px;background:var(--orange);border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+  .map-pin::after{content:'';position:absolute;width:14px;height:14px;background:var(--metal-surface);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}
+  .map-address-label{font-size:0.85rem;color:var(--steel-light);text-align:center;position:relative;z-index:1}
+  /* MESSENGERS */
+  .msg-section{background:var(--metal-dark)}
+  .msg-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  .msg-card{display:flex;align-items:center;gap:1.5rem;padding:1.75rem 2rem;border-radius:2px;text-decoration:none;transition:transform 0.2s;position:relative;overflow:hidden}
+  .msg-card:hover{transform:translateY(-3px)}
+  .msg-card.wa{background:linear-gradient(135deg,#075E54,#128C7E);border:1px solid rgba(37,211,102,0.2)}
+  .msg-card.tg{background:linear-gradient(135deg,#1B3A4B,#2B6CB0);border:1px solid rgba(0,136,204,0.2)}
+  .msg-icon{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .msg-icon.wa{background:rgba(37,211,102,0.15);border:1px solid rgba(37,211,102,0.3)}
+  .msg-icon.tg{background:rgba(0,136,204,0.15);border:1px solid rgba(0,136,204,0.3)}
+  .msg-icon svg{width:26px;height:26px}
+  .msg-info p{font-weight:600;font-size:1.05rem;color:#fff;margin-bottom:4px}
+  .msg-info span{font-size:0.83rem;color:rgba(255,255,255,0.65)}
+  /* FOOTER */
+  footer{background:var(--metal-mid);border-top:1px solid var(--metal-border);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between}
+  .footer-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;letter-spacing:0.05em;color:var(--white)}
+  .footer-logo span{color:var(--orange)}
+  .footer-copy{font-size:0.78rem;color:var(--steel);letter-spacing:0.05em}
+  /* RESPONSIVE */
+  @media(max-width:768px){
+    nav{padding:0 1.25rem}
+    .nav-links{display:none}
+    .hero-content{padding:0 1.25rem}
+    .hero-stats{gap:1.5rem;flex-wrap:wrap}
+    section{padding:4rem 1.25rem}
+    .about-grid{grid-template-columns:1fr}
+    .about-visual{display:none}
+    .contact-grid{grid-template-columns:1fr}
+    .msg-cards{grid-template-columns:1fr}
+    .price-card{flex-direction:column;align-items:flex-start}
+    footer{flex-direction:column;gap:1rem;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">СВАР<span>МАШ</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">О компании</a></li>
+    <li><a href="#price">Прайс</a></li>
+    <li><a href="#contacts">Контакты</a></li>
+    <li><a href="#messengers">Написать нам</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content" style="padding-top:60px">
+    <div class="hero-tag">Работаем с 2010 года</div>
+    <h1>
+      Сварочное<br>
+      <span class="line2">Оборудование</span>
+    </h1>
+    <p class="hero-sub">
+      Профессиональная техника, расходные материалы и инструмент для сварочных работ любой сложности
+    </p>
+    <div class="btn-row">
+      <a href="price.pdf" class="btn-primary" download>
+        <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path d="M10 2a1 1 0 011 1v9.586l2.293-2.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L9 12.586V3a1 1 0 011-1zM4 17a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1z"/></svg>
+        Скачать прайс
+      </a>
+      <a href="#contacts" class="btn-outline">Связаться с нами</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Позиций в каталоге</div>
+      </div>
+      <div>
+        <div class="stat-num">15 лет</div>
+        <div class="stat-label">На рынке</div>
+      </div>
+      <div>
+        <div class="stat-num">2000+</div>
+        <div class="stat-label">Клиентов</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">О компании</div>
+        <h2 class="section-title">Профессионалы<br>сварочного дела</h2>
+        <p>
+          <strong>СварМаш</strong> — поставщик профессионального сварочного оборудования, расходных материалов и защитных средств для промышленных предприятий и частных мастеров.
+        </p>
+        <p>
+          В нашем ассортименте — сварочные аппараты, электроды, проволока, горелки, маски, спецодежда и сопутствующий инструмент. Работаем напрямую с производителями, поэтому <strong>цены ниже рыночных</strong>.
+        </p>
+        <div class="about-features">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/></svg>
+            </div>
+            <div class="feature-text"><p>Гарантия</p><span>На всё оборудование</span></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 20 20"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/><path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7h-3v4h3V7z"/></svg>
+            </div>
+            <div class="feature-text"><p>Доставка</p><span>По городу и региону</span></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            </div>
+            <div class="feature-text"><p>Оригинал</p><span>Только сертифицированное</span></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+            </div>
+            <div class="feature-text"><p>Консультация</p><span>Помогаем с выбором</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="spark">
+          <svg class="spark-svg" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="40" r="30" stroke="#E8620A" stroke-width="1" stroke-dasharray="6 4"/>
+            <circle cx="40" cy="40" r="20" stroke="rgba(232,98,10,0.4)" stroke-width="1" stroke-dasharray="3 5"/>
+            <line x1="40" y1="10" x2="40" y2="70" stroke="#E8620A" stroke-width="0.5" opacity="0.4"/>
+            <line x1="10" y1="40" x2="70" y2="40" stroke="#E8620A" stroke-width="0.5" opacity="0.4"/>
+            <line x1="18" y1="18" x2="62" y2="62" stroke="#E8620A" stroke-width="0.5" opacity="0.3"/>
+            <line x1="62" y1="18" x2="18" y2="62" stroke="#E8620A" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="40" cy="40" r="4" fill="#E8620A"/>
+            <circle cx="40" cy="10" r="2.5" fill="#E8620A" opacity="0.7"/>
+            <circle cx="40" cy="70" r="2.5" fill="#E8620A" opacity="0.7"/>
+            <circle cx="10" cy="40" r="2.5" fill="#E8620A" opacity="0.7"/>
+            <circle cx="70" cy="40" r="2.5" fill="#E8620A" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="about-visual-text">Ваш партнёр в сварке</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="price-section" id="price">
+  <div class="container">
+    <div class="section-label">Прайс-лист</div>
+    <h2 class="section-title">Актуальные цены</h2>
+    <div class="price-card">
+      <div class="price-card-info">
+        <h3>Прайс-лист на сварочное оборудование</h3>
+        <p>Полный каталог с ценами: аппараты, электроды, проволока, маски, защитная одежда и расходные материалы</p>
+        <div class="price-meta">
+          <div class="price-badge">Формат: <strong>PDF</strong></div>
+          <div class="price-badge">Обновлён: <strong>Июнь 2025</strong></div>
+          <div class="price-badge">Позиций: <strong>500+</strong></div>
+        </div>
+      </div>
+      <div class="price-download">
+        <!-- ЗАМЕНИТЕ "price.pdf" на путь к вашему файлу -->
+        <a href="price.pdf" class="btn-download" download>
+          <svg viewBox="0 0 24 24"><path d="M12 2a1 1 0 011 1v10.586l2.293-2.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L11 13.586V3a1 1 0 011-1zM4 19a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1z"/></svg>
+          Скачать прайс
+        </a>
+        <span class="price-note">Бесплатно, без регистрации</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+<section class="contact-section" id="contacts">
+  <div class="container">
+    <div class="section-label">Контакты</div>
+    <h2 class="section-title">Как нас найти</h2>
+    <div class="contact-grid">
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Адрес</div>
+            <!-- ЗАМЕНИТЕ на ваш адрес -->
+            <div class="contact-info-value">г. Рига, ул. Brīvības 125, офис 14</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Телефон</div>
+            <!-- ЗАМЕНИТЕ на ваш номер -->
+            <div class="contact-info-value"><a href="tel:+37120000000">+371 200 00 000</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Email</div>
+            <!-- ЗАМЕНИТЕ на ваш email -->
+            <div class="contact-info-value"><a href="mailto:info@svarmash.lv">info@svarmash.lv</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Режим работы</div>
+            <div class="contact-info-value">Пн–Пт: 09:00 – 18:00</div>
+          </div>
+        </div>
+      </div>
+      <!-- ЗАМЕНИТЕ ссылку на Google Maps с вашим адресом -->
+      <a href="https://maps.google.com/?q=Riga,+Brīvības+125" target="_blank" rel="noopener" class="map-placeholder">
+        <div class="map-pin"></div>
+        <div class="map-address-label">ул. Brīvības 125, Рига<br><span style="font-size:0.75rem;opacity:0.6">Нажмите, чтобы открыть карту</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MESSENGERS -->
+<section class="msg-section" id="messengers">
+  <div class="container">
+    <div class="section-label">Мессенджеры</div>
+    <h2 class="section-title" style="margin-bottom:2rem">Напишите нам</h2>
+    <div class="msg-cards">
+      <!-- ЗАМЕНИТЕ номер в wa.me/ на ваш (без +, только цифры) -->
+      <a href="https://wa.me/37120000000" class="msg-card wa" target="_blank" rel="noopener">
+        <div class="msg-icon wa">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/>
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.932-1.427A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.338-1.279l-.31-.186-3.24.937.918-3.158-.203-.322A8 8 0 1112 20z" fill="#25D366"/>
+          </svg>
+        </div>
+        <div class="msg-info">
+          <p>WhatsApp</p>
+          <span>Ответим в течение 10 минут</span>
+        </div>
+      </a>
+      <!-- ЗАМЕНИТЕ username в t.me/ на ваш Telegram -->
+      <a href="https://t.me/svarmash" class="msg-card tg" target="_blank" rel="noopener">
+        <div class="msg-icon tg">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.93c-.12.56-.46.69-.93.43l-2.57-1.89-1.24 1.19c-.14.14-.25.25-.51.25l.18-2.58 4.65-4.2c.2-.18-.04-.28-.31-.1l-5.74 3.62-2.47-.77c-.54-.17-.55-.54.11-.79l9.64-3.72c.45-.16.84.1.67.63z" fill="#0088CC"/>
+          </svg>
+        </div>
+        <div class="msg-info">
+          <p>Telegram</p>
+          <span>Пишите в любое время</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">СВАР<span>МАШ</span></div>
+  <div class="footer-copy">© 2025 СварМаш. Все права защищены.</div>
+</footer>
+
+</body>
+</html>
