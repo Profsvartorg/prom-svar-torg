@@ -113,7 +113,29 @@ header{
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
 .btn-lg{padding:16px 30px;font-size:15px}
 .nav .btn{display:inline-flex}
-.burger{display:none}
+.burger{display:none;width:46px;height:46px;flex:none;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;place-items:center;transition:border-color .2s,background .2s}
+.burger:hover{border-color:var(--accent)}
+.burger svg{width:24px;height:24px}
+.burger .ic-close{display:none}
+.burger.open .ic-open{display:none}
+.burger.open .ic-close{display:block}
+/* mobile dropdown menu */
+.mobile-menu{display:none;position:fixed;top:82px;left:12px;right:12px;z-index:99;
+  background:rgba(16,19,26,.97);backdrop-filter:blur(16px);
+  border:1px solid var(--line);border-radius:16px;padding:12px;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.8);
+  opacity:0;transform:translateY(-12px) scale(.98);pointer-events:none;
+  transition:opacity .22s ease,transform .22s ease}
+.mobile-menu.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.mobile-menu a{display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--head);text-transform:uppercase;letter-spacing:.04em;font-weight:500;font-size:17px;
+  color:var(--ink);padding:16px 18px;border-radius:11px;transition:background .2s,color .2s}
+.mobile-menu a:hover,.mobile-menu a:active{background:var(--surface-2);color:var(--accent)}
+.mobile-menu a+a{margin-top:2px}
+.mobile-menu a .chev{width:18px;height:18px;color:var(--ink-faint)}
+.mobile-menu .mm-cta{margin-top:8px;background:linear-gradient(145deg,var(--accent),var(--accent-deep));color:#fff;justify-content:center;gap:10px}
+.mobile-menu .mm-cta:hover{color:#fff;filter:brightness(1.06)}
+.mobile-menu .mm-cta svg{width:18px;height:18px}
 
 /* ===== HERO ===== */
 .hero{position:relative;padding:clamp(56px,9vw,110px) 0 clamp(60px,8vw,96px);overflow:hidden}
@@ -425,7 +447,8 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
 }
 @media(max-width:720px){
   .nav-links{display:none}
-  .nav .btn span.lbl{display:none}
+  .nav .btn{display:none}
+  .burger{display:grid}
   .feat-grid,.contact-list{grid-template-columns:1fr}
   .cat-grid{grid-template-columns:1fr}
   .spark-tag{left:12px;right:12px;bottom:12px}
@@ -456,6 +479,21 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
     <a href="https://profsvartorg.github.io/prom-svar-torg/price/price.pdf" target="_blank" rel="noopener" class="btn btn-primary">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
       <span class="lbl">Скачать прайс</span>
+    </a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
+      <svg class="ic-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">О компании <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>
+    <a href="#cats">Каталог <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>
+    <a href="#price">Прайс <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>
+    <a href="#contacts">Контакты <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>
+    <a href="#messengers">Написать нам <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>
+    <a class="mm-cta" href="https://profsvartorg.github.io/prom-svar-torg/price/price.pdf" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      Скачать прайс
     </a>
   </div>
 </header>
@@ -730,6 +768,28 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
+  // бургер-меню на телефоне
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobileMenu');
+  if(burger && menu){
+    function setOpen(on){
+      burger.classList.toggle('open', on);
+      menu.classList.toggle('open', on);
+      burger.setAttribute('aria-expanded', on ? 'true' : 'false');
+    }
+    burger.addEventListener('click', function(e){
+      e.stopPropagation();
+      setOpen(!menu.classList.contains('open'));
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ setOpen(false); });
+    });
+    document.addEventListener('click', function(e){
+      if(menu.classList.contains('open') && !menu.contains(e.target) && !burger.contains(e.target)) setOpen(false);
+    });
+    window.addEventListener('resize', function(){ if(window.innerWidth > 720) setOpen(false); });
+  }
+
   // живой PDF: 3D-наклон за курсором
   var pdf = document.getElementById('pdfLive');
   if(pdf && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
