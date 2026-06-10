@@ -120,13 +120,14 @@ header{
 .burger.open .ic-open{display:none}
 .burger.open .ic-close{display:block}
 /* mobile dropdown menu */
-.mobile-menu{display:none;position:fixed;top:82px;left:12px;right:12px;z-index:99;
+.mobile-menu{position:fixed;top:82px;left:12px;right:12px;z-index:99;
   background:rgba(16,19,26,.97);backdrop-filter:blur(16px);
   border:1px solid var(--line);border-radius:16px;padding:12px;
   box-shadow:0 30px 60px -20px rgba(0,0,0,.8);
-  opacity:0;transform:translateY(-12px) scale(.98);pointer-events:none;
-  transition:opacity .22s ease,transform .22s ease}
-.mobile-menu.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+  opacity:0;visibility:hidden;transform:translateY(-12px) scale(.98);pointer-events:none;
+  transition:opacity .22s ease,transform .22s ease,visibility .22s ease}
+.mobile-menu.open{opacity:1;visibility:visible;transform:translateY(0) scale(1);pointer-events:auto}
+@media(min-width:721px){.mobile-menu{display:none}}
 .mobile-menu a{display:flex;align-items:center;justify-content:space-between;
   font-family:var(--head);text-transform:uppercase;letter-spacing:.04em;font-weight:500;font-size:17px;
   color:var(--ink);padding:16px 18px;border-radius:11px;transition:background .2s,color .2s}
@@ -227,7 +228,11 @@ header{
   22%{opacity:.95;transform:rotate(var(--a)) translateX(calc(var(--dist) * .7)) translateY(14px) scale(.5)}
   34%,100%{opacity:0;transform:rotate(var(--a)) translateX(var(--dist)) translateY(40px) scale(.2)}
 }
-@media(prefers-reduced-motion:reduce){.weld-fx{display:none}}
+@media(prefers-reduced-motion:reduce){
+  .weld-fx i{display:none}
+  .weld-fx .core{animation:none;opacity:1;transform:scale(1.1)}
+  .weld-fx .halo{animation:none;opacity:.8}
+}
 .spark-tag .t b{font-family:var(--head);font-size:16px;letter-spacing:.04em;text-transform:uppercase}
 .spark-tag .t span{display:block;font-size:12.5px;color:var(--ink-faint)}
 
