@@ -181,6 +181,7 @@ header{
   box-shadow:0 40px 80px -30px rgba(0,0,0,.8);
 }
 .hero-visual image-slot{width:100%;height:clamp(360px,46vw,560px)}
+.hero-visual .frame.is-logo{background:#fff}
 .hero-visual .frame::after{
   content:"";position:absolute;inset:0;pointer-events:none;
   box-shadow:inset 0 0 120px 10px rgba(0,0,0,.45);
@@ -198,7 +199,7 @@ header{
 .spark-tag .ic svg{width:22px;height:22px;color:var(--accent)}
 
 /* ===== СВАРОЧНАЯ ДУГА НА ФОТО ===== */
-.weld-fx{position:absolute;left:29%;top:49%;width:0;height:0;z-index:4;pointer-events:none}
+.weld-fx{position:absolute;left:32%;top:49%;width:0;height:0;z-index:4;pointer-events:none}
 .weld-fx .halo{position:absolute;left:-110px;top:-110px;width:220px;height:220px;border-radius:50%;mix-blend-mode:screen;
   background:radial-gradient(circle,rgba(170,205,255,.55),rgba(61,134,224,.2) 38%,transparent 70%);
   animation:weldHalo 2.6s ease-in-out infinite}
@@ -524,13 +525,8 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
       </div>
     </div>
     <div class="hero-visual">
-      <div class="frame">
-        <image-slot id="hero" shape="rect" placeholder="Перетащите фото: сварка / искры / цех" src="images/hero.jpg"></image-slot>
-        <span class="weld-fx">
-          <span class="halo"></span>
-          <span class="core"></span>
-          <i style="--a:-20deg;--dist:70px;--d:0s"></i><i style="--a:8deg;--dist:90px;--d:.04s"></i><i style="--a:30deg;--dist:60px;--d:.09s"></i><i style="--a:52deg;--dist:80px;--d:.02s"></i><i style="--a:-44deg;--dist:64px;--d:.11s"></i><i style="--a:74deg;--dist:72px;--d:.07s"></i><i style="--a:-66deg;--dist:78px;--d:.14s"></i><i style="--a:18deg;--dist:104px;--d:.17s"></i><i style="--a:-8deg;--dist:54px;--d:.21s"></i><i style="--a:42deg;--dist:96px;--d:.06s"></i><i style="--a:-32deg;--dist:88px;--d:.19s"></i><i style="--a:62deg;--dist:58px;--d:.13s"></i>
-        </span>
+      <div class="frame is-logo">
+        <image-slot id="hero" shape="rect" fit="contain" placeholder="Логотип ПрофСварТорг" src="images/about.png"></image-slot>
       </div>
       <div class="spark-tag">
         <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
@@ -578,7 +574,12 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
       </div>
     </div>
     <div class="about-visual">
-      <image-slot id="about" shape="rounded" radius="16" placeholder="Перетащите фото: мастер за работой / оборудование" src="images/about.png"></image-slot>
+      <image-slot id="about" shape="rounded" radius="16" placeholder="Перетащите фото: мастер за работой / оборудование" src="images/hero.jpg"></image-slot>
+      <span class="weld-fx">
+        <span class="halo"></span>
+        <span class="core"></span>
+        <i style="--a:-20deg;--dist:70px;--d:0s"></i><i style="--a:8deg;--dist:90px;--d:.04s"></i><i style="--a:30deg;--dist:60px;--d:.09s"></i><i style="--a:52deg;--dist:80px;--d:.02s"></i><i style="--a:-44deg;--dist:64px;--d:.11s"></i><i style="--a:74deg;--dist:72px;--d:.07s"></i><i style="--a:-66deg;--dist:78px;--d:.14s"></i><i style="--a:18deg;--dist:104px;--d:.17s"></i><i style="--a:-8deg;--dist:54px;--d:.21s"></i><i style="--a:42deg;--dist:96px;--d:.06s"></i><i style="--a:-32deg;--dist:88px;--d:.19s"></i><i style="--a:62deg;--dist:58px;--d:.13s"></i>
+      </span>
       <div class="badge-float">
         <div class="big">9</div>
         <div class="sm">лет на рынке</div>
@@ -684,11 +685,11 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
         </div>
         <div class="ci">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-          <div class="k">Телефон</div><div class="v" style="line-height:1.45"><a href="tel:+79043988988">8 (904) 398-89-88</a><br><a href="tel:+79158181375">8 (915) 818-13-75</a></div>
+          <div class="k">Телефон</div><div class="v" style="line-height:1.45">8 (904) 398-89-88<br>8 (915) 818-13-75</div>
         </div>
         <div class="ci">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
-          <div class="k">Email</div><div class="v"><a href="/cdn-cgi/l/email-protection#5d2d2f323b2e2b3c2f29322f3a1d303c3431732f28"><span class="__cf_email__" data-cfemail="09797b666f7a7f687b7d667b6e4964686065277b7c">[email&#160;protected]</span></a></div>
+          <div class="k">Email</div><div class="v">profsvartorg&#64;mail&#46;ru</div>
         </div>
         <div class="ci">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
@@ -751,9 +752,9 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
         </div>
         <div class="foot-col">
           <h4>Контакты</h4>
-          <a href="tel:+79043988988">8 (904) 398-89-88</a>
-          <a href="tel:+79158181375">8 (915) 818-13-75</a>
-          <a href="/cdn-cgi/l/email-protection#2252504d4451544350564d5045624f434b4e0c5057"><span class="__cf_email__" data-cfemail="bececcd1d8cdc8dfcccad1ccd9fed3dfd7d290cccb">[email&#160;protected]</span></a>
+          <p>8 (904) 398-89-88</p>
+          <p>8 (915) 818-13-75</p>
+          <p>profsvartorg&#64;mail&#46;ru</p>
           <p>Нижегородская обл., г. Бор, ул. Максимова, 22</p>
           <p>Пн–Пт: 09:00–17:00 (обед 13:00–14:00)</p>
         </div>
@@ -771,7 +772,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function(){
   // бургер-меню на телефоне
   var burger = document.getElementById('burger');
