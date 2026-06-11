@@ -232,9 +232,8 @@ header{
   34%,100%{opacity:0;transform:rotate(var(--a)) translateX(var(--dist)) translateY(40px) scale(.2)}
 }
 @media(prefers-reduced-motion:reduce){
-  .weld-fx i{display:none}
-  .weld-fx .core{animation:none;opacity:1;transform:scale(1.1)}
-  .weld-fx .halo{animation:none;opacity:.8}
+  .weld-fx .core{opacity:1}
+  .weld-fx .halo{opacity:.85}
 }
 .spark-tag .t b{font-family:var(--head);font-size:16px;letter-spacing:.04em;text-transform:uppercase}
 .spark-tag .t span{display:block;font-size:12.5px;color:var(--ink-faint)}
@@ -386,7 +385,6 @@ section.block{padding:clamp(64px,9vw,118px) 0;position:relative}
 @keyframes pdfPulse{0%,100%{box-shadow:0 12px 24px -6px rgba(61,134,224,.55)}50%{box-shadow:0 14px 32px 0 rgba(61,134,224,.9)}}
 .pdf-hint{font-family:var(--head);text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--ink-dim);transition:color .2s}
 .pdf-live:hover .pdf-hint{color:var(--accent)}
-@media(prefers-reduced-motion:reduce){.pdf-glow,.pdf-live .doc,.pdf-live .lines i,.pdf-live .scan{animation:none}}
 
 /* ===== CONTACTS ===== */
 .contacts{background:var(--bg-2);border-top:1px solid var(--line-soft)}
@@ -425,6 +423,9 @@ section.block{padding:clamp(64px,9vw,118px) 0;position:relative}
 .msg .ic svg{width:28px;height:28px;color:#fff}
 .msg.max .ic{background:linear-gradient(145deg,#2f6bff,#7b4dff)}
 .msg.tg .ic{background:#2aabee}
+.msg.mail .ic{background:linear-gradient(145deg,var(--accent),var(--accent-deep))}
+.msg.mail{cursor:default}
+.msg.mail:hover{transform:none}
 .msg .t b{font-family:var(--head);text-transform:uppercase;font-size:19px;letter-spacing:.03em}
 .msg .t span{display:block;font-size:14px;color:var(--ink-faint)}
 .msg .go{margin-left:auto;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;transition:background .25s,border-color .25s}
@@ -729,6 +730,10 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
         <div class="t"><b>Telegram</b><span>Пишите в любое время</span></div>
         <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
       </a>
+      <div class="msg mail">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
+        <div class="t"><b>Почта</b><span>profsvartorg&#64;mail&#46;ru</span></div>
+      </div>
     </div>
   </div>
 </section>
