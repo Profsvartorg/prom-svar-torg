@@ -487,22 +487,13 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
   .spark-tag{left:12px;right:12px;bottom:12px}
   .about-visual .badge-float{right:12px;padding:14px 18px}
   .about-visual .badge-float .big{font-size:32px}
-  /* производительность: убираем дорогое размытие на телефоне */
+  /* производительность: убираем только дорогое размытие фона на телефоне */
   header{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(11,13,18,.97)}
   .mobile-menu{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(16,19,26,.99)}
   .num-tag{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(12,13,16,.9)}
   .map-overlay{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(12,13,16,.92)}
-  /* меньше искр на телефоне */
-  .weld-fx i{display:none}
-  .weld-fx .core{animation:none;opacity:1;transform:scale(1.05)}
-  .weld-fx .halo{animation:none;mix-blend-mode:normal;opacity:.5}
-  /* гасим непрерывные анимации — главная причина рывков прокрутки */
-  .pdf-live .doc{animation:none}
-  .pdf-glow{animation:none;opacity:.5}
-  .pdf-live .scan{display:none}
-  .pdf-live .lines i{animation:none;background:var(--line)}
-  .strip-inner{animation:none}
-  .hero::before{display:none}
+  /* свечение искры — без режима смешивания (он дорогой при прокрутке) */
+  .weld-fx .halo{mix-blend-mode:normal}
 }
 /* пауза анимаций, когда блок не виден на экране */
 .anim-paused, .anim-paused *{animation-play-state:paused !important}
