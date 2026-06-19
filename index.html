@@ -31,14 +31,15 @@
   --body:'Golos Text',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
+@media(min-width:981px){html{scroll-behavior:smooth}}
 body{
   font-family:var(--body);
   background:var(--bg);
   color:var(--ink);
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  overflow-x:clip;
 }
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
@@ -246,7 +247,7 @@ header{
 @keyframes scroll{to{transform:translateX(-50%)}}
 
 /* ===== SECTION base ===== */
-section.block{padding:clamp(64px,9vw,118px) 0;position:relative}
+section.block{padding:clamp(64px,9vw,118px) 0;position:relative;content-visibility:auto;contain-intrinsic-size:auto 900px}
 .sec-head{max-width:720px;margin-bottom:54px}
 .sec-head p.desc{color:var(--ink-dim);font-size:17px;margin-top:18px}
 
@@ -382,7 +383,6 @@ body.price-unavailable .price-note{display:none}
   transform-style:preserve-3d;
   transition:box-shadow .25s ease;
   animation:pdfFloat 4.6s ease-in-out infinite;
-  will-change:transform;
 }
 @keyframes pdfFloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-12px) rotate(1.5deg)}}
 .pdf-live:hover .doc{animation-play-state:paused;box-shadow:0 42px 72px -22px rgba(61,134,224,.5)}
