@@ -351,6 +351,24 @@ section.block{padding:clamp(64px,9vw,118px) 0;position:relative}
 .price-meta .chip .v{font-family:var(--head);font-size:20px;font-weight:600;color:var(--ink)}
 .price-meta .chip .v.acc{color:var(--accent)}
 .price-note{font-size:13px;color:var(--ink-faint);margin-top:16px;display:flex;align-items:center;gap:8px}
+/* состояние «прайс обновляется» */
+.btn.is-soon,.pdf-live.is-soon{opacity:.62;cursor:not-allowed}
+.btn.is-soon:hover,.pdf-live.is-soon:hover{transform:none;box-shadow:none}
+.price-soon-badge{display:none;align-items:center;gap:9px;margin-top:16px;padding:11px 16px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:13.5px;color:var(--ink-dim)}
+.price-soon-badge .pulse{width:9px;height:9px;border-radius:50%;background:var(--accent-2);flex:none;box-shadow:0 0 0 0 rgba(255,176,32,.6);animation:soonPulse 1.8s ease-in-out infinite}
+@keyframes soonPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,176,32,.5)}50%{box-shadow:0 0 0 7px rgba(255,176,32,0)}}
+body.price-unavailable .price-soon-badge{display:inline-flex}
+body.price-unavailable .price-note{display:none}
+/* всплывающее уведомление */
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);z-index:300;
+  background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent-2);
+  border-radius:12px;padding:15px 22px;display:flex;align-items:center;gap:13px;
+  box-shadow:0 24px 50px -18px rgba(0,0,0,.7);opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s;max-width:90vw}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast svg{width:22px;height:22px;color:var(--accent-2);flex:none}
+.toast b{font-family:var(--head);text-transform:uppercase;letter-spacing:.04em;font-size:15px;color:var(--ink);display:block}
+.toast span{font-size:13px;color:var(--ink-faint)}
 .price-right{position:relative;border-left:1px solid var(--line);min-height:280px;background:var(--bg-2);display:grid;place-items:center;padding:40px;overflow:hidden}
 .pdf-live{position:relative;display:flex;flex-direction:column;align-items:center;gap:20px;text-decoration:none;cursor:pointer;perspective:900px}
 .pdf-glow{position:absolute;top:38%;left:50%;width:210px;height:210px;margin:-105px 0 0 -105px;border-radius:50%;background:radial-gradient(circle,rgba(61,134,224,.35),transparent 65%);filter:blur(6px);animation:pdfGlow 3.4s ease-in-out infinite;pointer-events:none}
@@ -671,6 +689,10 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)"><path d="M20 6 9 17l-5-5"/></svg>
           Бесплатно, без регистрации
         </p>
+        <div class="price-soon-badge">
+          <span class="pulse"></span>
+          <span>Прайс-лист сейчас обновляется — скоро будет доступен. Свяжитесь с нами — пришлём актуальные цены.</span>
+        </div>
       </div>
       <div class="price-right">
         <a class="pdf-live" id="pdfLive" href="https://profsvartorg.github.io/prom-svar-torg/price/price.pdf" target="_blank" rel="noopener" aria-label="Скачать прайс PDF">
@@ -811,6 +833,11 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
   </div>
 </footer>
 
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+  <div><b>Прайс обновляется</b><span>Скоро будет доступен — напишите нам в MAX или Telegram.</span></div>
+</div>
+
 <script>
 (function(){
   // бургер-меню на телефоне
@@ -834,6 +861,36 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
     });
     window.addEventListener('resize', function(){ if(window.innerWidth > 720) setOpen(false); });
   }
+
+  // проверка наличия прайс-листа: если файла нет — показываем «обновляется»
+  (function(){
+    var priceLinks = [].slice.call(document.querySelectorAll('a[href*="price.pdf"]'));
+    if(!priceLinks.length) return;
+    var url = priceLinks[0].getAttribute('href');
+    var toast = document.getElementById('toast');
+    var toastTimer;
+    function showToast(){
+      if(!toast) return;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 4000);
+    }
+    function markUnavailable(){
+      document.body.classList.add('price-unavailable');
+      priceLinks.forEach(function(a){
+        a.classList.add('is-soon');
+        a.setAttribute('aria-disabled','true');
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          showToast();
+        });
+      });
+    }
+    // HEAD-запрос; если файл не найден или ошибка — считаем недоступным
+    fetch(url, {method:'HEAD'}).then(function(r){
+      if(!r.ok) markUnavailable();
+    }).catch(function(){ markUnavailable(); });
+  })();
 
   // живой PDF: 3D-наклон за курсором
   var pdf = document.getElementById('pdfLive');
