@@ -494,7 +494,16 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
   .num-tag{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(12,13,16,.9)}
   .map-overlay{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(12,13,16,.92)}
   /* меньше искр на телефоне */
-  .weld-fx i:nth-of-type(n+7){display:none}
+  .weld-fx i{display:none}
+  .weld-fx .core{animation:none;opacity:1;transform:scale(1.05)}
+  .weld-fx .halo{animation:none;mix-blend-mode:normal;opacity:.5}
+  /* гасим непрерывные анимации — главная причина рывков прокрутки */
+  .pdf-live .doc{animation:none}
+  .pdf-glow{animation:none;opacity:.5}
+  .pdf-live .scan{display:none}
+  .pdf-live .lines i{animation:none;background:var(--line)}
+  .strip-inner{animation:none}
+  .hero::before{display:none}
 }
 /* пауза анимаций, когда блок не виден на экране */
 .anim-paused, .anim-paused *{animation-play-state:paused !important}
