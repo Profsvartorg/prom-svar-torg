@@ -906,34 +906,34 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
   }
 
   // проверка наличия прайс-листа: если файла нет — показываем «обновляется»
-  (function(){
-    var priceLinks = [].slice.call(document.querySelectorAll('a[href*="price.xlsx"]'));
-    if(!priceLinks.length) return;
-    var url = priceLinks[0].getAttribute('href');
-    var toast = document.getElementById('toast');
-    var toastTimer;
-    function showToast(){
-      if(!toast) return;
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 4000);
-    }
-    function markUnavailable(){
-      document.body.classList.add('price-unavailable');
-      priceLinks.forEach(function(a){
-        a.classList.add('is-soon');
-        a.setAttribute('aria-disabled','true');
-        a.addEventListener('click', function(e){
-          e.preventDefault();
-          showToast();
-        });
-      });
-    }
-    // HEAD-запрос; если файл не найден или ошибка — считаем недоступным
-    fetch(url, {method:'HEAD'}).then(function(r){
-      if(!r.ok) markUnavailable();
-    }).catch(function(){ markUnavailable(); });
-  })();
+  // (function(){
+  //   var priceLinks = [].slice.call(document.querySelectorAll('a[href*="price.xlsx"]'));
+  //   if(!priceLinks.length) return;
+  //   var url = priceLinks[0].getAttribute('href');
+  //   var toast = document.getElementById('toast');
+  //   var toastTimer;
+  //   function showToast(){
+  //     if(!toast) return;
+  //     toast.classList.add('show');
+  //     clearTimeout(toastTimer);
+  //     toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 4000);
+  //   }
+  //   function markUnavailable(){
+  //     document.body.classList.add('price-unavailable');
+  //     priceLinks.forEach(function(a){
+  //       a.classList.add('is-soon');
+  //       a.setAttribute('aria-disabled','true');
+  //       a.addEventListener('click', function(e){
+  //         e.preventDefault();
+  //         showToast();
+  //       });
+  //     });
+  //   }
+  //   // HEAD-запрос; если файл не найден или ошибка — считаем недоступным
+  //   fetch(url, {method:'HEAD'}).then(function(r){
+  //     if(!r.ok) markUnavailable();
+  //   }).catch(function(){ markUnavailable(); });
+  // })();
 
   // живой PDF: 3D-наклон за курсором
   var pdf = document.getElementById('pdfLive');
