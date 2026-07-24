@@ -566,7 +566,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
       <a href="#contacts">Контакты</a>
       <a href="#messengers">Написать нам</a>
     </nav>
-    <a href="https://profsvartorg.github.io/prom-svar-torg/price/price.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+    <a href="https://profsvartorg.github.io/prom-svar-torg/price/price.xlsx" target="_blank" rel="noopener" class="btn btn-primary">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
       <span class="lbl">Скачать прайс</span>
     </a>
@@ -581,7 +581,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
     <a href="#price">Прайс <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>
     <a href="#contacts">Контакты <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>
     <a href="#messengers">Написать нам <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></a>
-    <a class="mm-cta" href="https://profsvartorg.github.io/prom-svar-torg/price/price.pdf" target="_blank" rel="noopener">
+    <a class="mm-cta" href="https://profsvartorg.github.io/prom-svar-torg/price/price.xlsx" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
       Скачать прайс
     </a>
@@ -596,7 +596,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
       <h1>Проф<span class="hl">СварТорг</span></h1>
       <p class="lead">Профессиональная техника, расходные материалы и инструмент для сварочных работ любой сложности — напрямую от производителей.</p>
       <div class="hero-cta">
-        <a href="https://profsvartorg.github.io/prom-svar-torg/price/price.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+        <a href="https://profsvartorg.github.io/prom-svar-torg/price/price.xlsx" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           Скачать прайс
         </a>
@@ -728,7 +728,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
           <div class="chip"><span class="k">Ассортимент</span><span class="v">Широкий</span></div>
           <div class="chip"><span class="k">Бренды</span><span class="v">В наличии и под заказ</span></div>
         </div>
-        <a href="https://profsvartorg.github.io/prom-svar-torg/price/price.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+        <a href="https://profsvartorg.github.io/prom-svar-torg/price/price.xlsx" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           Скачать прайс
         </a>
@@ -742,7 +742,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
         </div>
       </div>
       <div class="price-right">
-        <a class="pdf-live" id="pdfLive" href="https://profsvartorg.github.io/prom-svar-torg/price/price.pdf" target="_blank" rel="noopener" aria-label="Скачать прайс PDF">
+        <a class="pdf-live" id="pdfLive" href="https://profsvartorg.github.io/prom-svar-torg/price/price.xlsx" target="_blank" rel="noopener" aria-label="Скачать прайс PDF">
           <span class="pdf-glow"></span>
           <span class="doc">
             <span class="scan"></span>
@@ -907,7 +907,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
 
   // проверка наличия прайс-листа: если файла нет — показываем «обновляется»
   (function(){
-    var priceLinks = [].slice.call(document.querySelectorAll('a[href*="price.pdf"]'));
+    var priceLinks = [].slice.call(document.querySelectorAll('a[href*="price.xlsx"]'));
     if(!priceLinks.length) return;
     var url = priceLinks[0].getAttribute('href');
     var toast = document.getElementById('toast');
