@@ -963,6 +963,39 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
   <div><b>Прайс обновляется</b><span>Скоро будет доступен — напишите нам в MAX,Telegram или на почту.</span></div>
 </div>
 
+<!-- ===== МОДАЛКА ВЫБОРА ФОРМАТА ПРАЙСА ===== -->
+<div class="price-modal-overlay" id="priceModalOverlay">
+  <div class="price-modal" role="dialog" aria-modal="true" aria-labelledby="priceModalTitle">
+    <button type="button" class="price-modal-close" id="priceModalClose" aria-label="Закрыть">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <span class="eyebrow" id="priceModalTitle">Прайс-лист</span>
+    <h3>Выберите формат</h3>
+    <div class="price-modal-options">
+      <a class="price-modal-opt" href="https://profsvartorg.github.io/prom-svar-torg/price/price.xlsx" target="_blank" rel="noopener">
+        <span class="pmo-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        </span>
+        <span class="pmo-txt">
+          <span class="pmo-fmt">XLSX</span>
+          <span class="pmo-desc">Таблица Excel</span>
+        </span>
+        <svg class="pmo-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      </a>
+      <a class="price-modal-opt" href="https://profsvartorg.github.io/prom-svar-torg/price/price.pdf" target="_blank" rel="noopener">
+        <span class="pmo-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        </span>
+        <span class="pmo-txt">
+          <span class="pmo-fmt">PDF</span>
+          <span class="pmo-desc">Документ PDF</span>
+        </span>
+        <svg class="pmo-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   // бургер-меню на телефоне
@@ -1074,39 +1107,6 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
   }
 })();
 </script>
-
-<!-- ===== МОДАЛКА ВЫБОРА ФОРМАТА ПРАЙСА ===== -->
-<div class="price-modal-overlay" id="priceModalOverlay">
-  <div class="price-modal" role="dialog" aria-modal="true" aria-labelledby="priceModalTitle">
-    <button type="button" class="price-modal-close" id="priceModalClose" aria-label="Закрыть">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
-    <span class="eyebrow" id="priceModalTitle">Прайс-лист</span>
-    <h3>Выберите формат</h3>
-    <div class="price-modal-options">
-      <a class="price-modal-opt" href="https://profsvartorg.github.io/prom-svar-torg/price/price.xlsx" target="_blank" rel="noopener">
-        <span class="pmo-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-        </span>
-        <span class="pmo-txt">
-          <span class="pmo-fmt">XLSX</span>
-          <span class="pmo-desc">Таблица Excel</span>
-        </span>
-        <svg class="pmo-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-      </a>
-      <a class="price-modal-opt" href="https://profsvartorg.github.io/prom-svar-torg/price/price.pdf" target="_blank" rel="noopener">
-        <span class="pmo-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-        </span>
-        <span class="pmo-txt">
-          <span class="pmo-fmt">PDF</span>
-          <span class="pmo-desc">Документ PDF</span>
-        </span>
-        <svg class="pmo-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-      </a>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
