@@ -402,8 +402,16 @@ section.block{padding:clamp(64px,9vw,118px) 0;position:relative;content-visibili
   box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
 .price-modal-overlay.open .price-modal{transform:translateY(0) scale(1)}
-.price-modal .eyebrow{margin-bottom:10px}
-.price-modal h3{font-family:var(--head);text-transform:uppercase;font-size:clamp(20px,3vw,26px);margin-bottom:22px}
+.price-modal h3{
+  font-family:var(--head);
+  text-transform:uppercase;
+  letter-spacing:.02em;
+  font-size:clamp(19px,3vw,23px);
+  font-weight:700;
+  margin-bottom:6px;
+  padding-right:34px;
+}
+.price-modal-sub{font-size:14.5px;color:var(--ink-dim);margin-bottom:22px}
 .price-modal-close{
   position:absolute;top:16px;right:16px;
   width:34px;height:34px;border-radius:9px;
@@ -421,13 +429,17 @@ section.block{padding:clamp(64px,9vw,118px) 0;position:relative;content-visibili
   transition:border-color .15s ease,background .15s ease,transform .15s ease;
 }
 .price-modal-opt:hover{border-color:var(--accent);background:var(--surface-2);transform:translateY(-1px)}
-.pmo-ic{flex:none;width:38px;height:38px;border-radius:9px;display:grid;place-items:center;background:var(--surface-2);color:var(--accent-2)}
-.pmo-ic svg{width:19px;height:19px}
+.pmo-ic{
+  flex:none;width:44px;height:44px;border-radius:10px;
+  display:grid;place-items:center;
+  font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:.01em;
+  color:#fff;
+}
+.pmo-ic--xls{background:linear-gradient(155deg,#3d86e0,#1d5ba6)}
+.pmo-ic--pdf{background:linear-gradient(155deg,#e2632f,#b8401a)}
 .pmo-txt{flex:1;display:flex;flex-direction:column;gap:2px}
-.pmo-fmt{font-family:var(--head);font-size:15px;font-weight:600;letter-spacing:.03em}
+.pmo-fmt{font-family:var(--head);font-size:15.5px;font-weight:700;letter-spacing:.02em}
 .pmo-desc{font-size:12.5px;color:var(--ink-faint)}
-.pmo-dl{flex:none;width:18px;height:18px;color:var(--ink-faint)}
-.price-modal-opt:hover .pmo-dl{color:var(--accent)}
 
 /* ===== PRICE ===== */
 .price-card{
@@ -806,7 +818,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
         <h2>Актуальные цены</h2>
         <p>Полный каталог: аппараты, электроды, проволока, маски, защитная одежда и расходные материалы. Цены можно узнать по запросу.</p>
         <div class="price-meta">
-          <div class="chip"><span class="k">Формат</span><span class="v acc">XLSX</span></div>
+          <div class="chip"><span class="k">Формат</span><span class="v acc">XLSX-PDF</span></div>
           <div class="chip"><span class="k">Ассортимент</span><span class="v">Широкий</span></div>
           <div class="chip"><span class="k">Бренды</span><span class="v">В наличии и под заказ</span></div>
         </div>
@@ -829,7 +841,7 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
           <span class="doc">
             <span class="scan"></span>
             <span class="corner"></span>
-            <span class="tag">XLSX</span>
+            <span class="tag">XLSX-PDF</span>
             <span class="lines"><i></i><i></i><i></i><i></i></span>
             <span class="dl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></span>
           </span>
@@ -969,28 +981,22 @@ footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:56px 0
     <button type="button" class="price-modal-close" id="priceModalClose" aria-label="Закрыть">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
-    <span class="eyebrow" id="priceModalTitle">Прайс-лист</span>
-    <h3>Выберите формат</h3>
+    <h3 id="priceModalTitle">Скачать прайс</h3>
+    <p class="price-modal-sub">Выберите формат файла</p>
     <div class="price-modal-options">
       <a class="price-modal-opt" href="https://profsvartorg.github.io/prom-svar-torg/price/price.xlsx" target="_blank" rel="noopener">
-        <span class="pmo-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-        </span>
+        <span class="pmo-ic pmo-ic--xls">XLS</span>
         <span class="pmo-txt">
           <span class="pmo-fmt">XLSX</span>
-          <span class="pmo-desc">Таблица Excel</span>
+          <span class="pmo-desc">Исходный файл таблицы</span>
         </span>
-        <svg class="pmo-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
       </a>
       <a class="price-modal-opt" href="https://profsvartorg.github.io/prom-svar-torg/price/price.pdf" target="_blank" rel="noopener">
-        <span class="pmo-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-        </span>
+        <span class="pmo-ic pmo-ic--pdf">PDF</span>
         <span class="pmo-txt">
           <span class="pmo-fmt">PDF</span>
-          <span class="pmo-desc">Документ PDF</span>
+          <span class="pmo-desc">Конвертируется автоматически</span>
         </span>
-        <svg class="pmo-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
       </a>
     </div>
   </div>
